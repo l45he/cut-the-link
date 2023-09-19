@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Регистрация
+{% endblock title %}
+
+{% block main %}
+    <main class="main container">
+        <div class="registration">
+            <h1>Регистрация</h1>
+            <form method="post" class="register">
+                {% csrf_token %}
+                {{ form }}
+                <button class="registration__btn" type="submit">Зарегестрироваться</button>
+            <p>Уже зарегестрированы? <a href="">Войти в личный кабинет</a></p>
+            </form>
+        </div>
+    </main>
+
+{% endblock main %}
+
+

@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Кабинет пользователя
+{% endblock title %}
+
+{% block main %}
+    <div class="container">
+        <div class="profile">
+            <h1>Личный кабинет</h1>
+
+            <div class="profile__info">
+                <div class="profile__name">
+                    <strong>@{{ user.username }}</strong>
+                </div>
+                {% if user.email %}
+                <div class="profile__email">
+                    <strong>Email: </strong><span>{{ user.email }}</span>
+                </div>
+                {% endif %}
+                <a href="{% url 'exit' %}" class="profile__btn">Выйти из кабинета</a>
+            </div>
+            <h2>Изменить данные пользователя</h2>
+            <form method="post">
+                {% csrf_token %}
+                {{ updateUserForm }}
+                <button class="profile__btn" type="submit">Обновить данные</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock main %}

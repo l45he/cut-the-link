@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title> {% block title %}{% endblock title %} </title>
+</head>
+<body>
+    <header>
+        <div class="header container">
+            <div class="header__left">
+                <img class="header__logo" src="{% static 'pictures/cats.png' %}" alt="cats">
+                <p>Уберем всё<br>лишнее из ссылки!</p>
+            </div>
+            <ul class="header__right">
+                <li><a href="{% url 'home' %}">Главная</a></li>
+                <li><a href="{% url 'about' %}">Про нас</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}">Кабинет</a></li>
+                    <li><a href="{% url 'links' %}">Ссылки</a></li>
+                {% else %}
+                    <li><a href="{% url 'auth' %}">Войти</a></li>
+                    <li><a href="{% url 'register' %}">Регистрация</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </header>
+    {% block main %}
+    {% endblock main%}
+    <footer>
+        <div class="footer container">
+            <div class="footer__rights">(С) Все права защищены</div>
+            <div class="footer__socials">
+                <div class="footer__icons">
+                    <img src="{% static 'pictures/whatsapp.png' %}" alt="whatsapp">
+                </div>
+                <div class="footer__icons">
+                    <img src="{% static 'pictures/telegram.png' %}" alt="telegram">
+                </div>
+                <div class="footer__icons">
+                    <img src="{% static 'pictures/vk.png' %}" alt="vk">
+                </div>
+                <div class="footer__icons">
+                    <img src="{% static 'pictures/inst.png' %}" alt="inst">
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

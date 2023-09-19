@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+
+{% block title %}
+Добавление ссылок
+{% endblock title %}
+
+{% block main %}
+    <div class="container">
+        <div class="links">
+            <h1>Создание ссылок</h1>
+                <div class="links__columns">
+                    <div class="links__fields">
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ addLink }}
+                            <button type="submit" class="links__btn">Создать ссылку</button>
+                        </form>
+                    </div>
+                    <div class="links__current">
+                        <h3>Мои ссылки</h3>
+                        <br>
+                        {% if links %}
+                            {% for link in links %}
+                                <p class="links__instance"><a href="{{ link.name }}">/link/{{ link.short_name }}/</a></p>
+                                <p></p>
+                            {% endfor %}
+                        {% else %}
+                            <p>Ссылок нет</p>
+                        {% endif %}
+                    </div>
+                </div>
+        </div>
+    </div>
+
+{% endblock main %}
